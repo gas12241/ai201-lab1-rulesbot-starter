@@ -15,19 +15,19 @@ Split a single rule book document into smaller chunks suitable for embedding and
 
 **Inputs:**
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `text` | `str` | The full text of a rule book document |
+| Parameter   | Type  | Description                                                     |
+| ----------- | ----- | --------------------------------------------------------------- |
+| `text`      | `str` | The full text of a rule book document                           |
 | `game_name` | `str` | The name of the game this document belongs to (e.g., `"Catan"`) |
 
 **Output:** `list[dict]`
 
 Each dict in the returned list contains exactly these keys:
 
-| Key | Type | Description |
-|-----|------|-------------|
-| `"text"` | `str` | The chunk text |
-| `"game"` | `str` | The game name (passed through from `game_name`) |
+| Key          | Type  | Description                                                         |
+| ------------ | ----- | ------------------------------------------------------------------- |
+| `"text"`     | `str` | The chunk text                                                      |
+| `"game"`     | `str` | The game name (passed through from `game_name`)                     |
 | `"chunk_id"` | `str` | A unique identifier for this chunk (e.g., `"catan_0"`, `"catan_1"`) |
 
 Returns an empty list `[]` if the input text is empty or produces no valid chunks.
@@ -111,16 +111,19 @@ handle these cases better, at the cost of more implementation complexity.
 
 ## Implementation Notes
 
-*Fill this in after running the app and confirming ingestion worked.*
+_Fill this in after running the app and confirming ingestion worked._
 
 **Actual chunk count produced across all 8 rule books:**
 
 ```
-[your answer here]
+My terminal tells me that after loading 8 rule documents, it stored 149 total
+chunks in the vector database.
 ```
 
 **One thing that surprised you or didn't match your expectations:**
 
 ```
-[your answer here]
+I don't know if it's fair to say, but I didn't necesarily have too many expectations.
+I guess when I read rule books, I don't think of them being TOO long so the number
+of chunks maybe sounds bigger than I thought, but that's about it. Also, I'm kinda curious what 300 characters looks like. In a way it sounds like a lot because it is 300, but I am curious about how long the average rule is in certain rulebooks.
 ```

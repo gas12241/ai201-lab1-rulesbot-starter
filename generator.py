@@ -35,5 +35,28 @@ def generate_response(query, retrieved_chunks):
             "Try rephrasing your question — or check that your ingestion pipeline is working."
         )
 
-    # Your implementation here.
-    return "⚙️ Response generation not yet implemented. Complete Milestone 3 to activate answers."
+    context = "\n\n".join(
+        f"[Game: {chunk['game']}]\n{chunk['text']}"
+        for chunk in retrieved_chunks
+    )
+
+    system_message = (
+        "You are a board game rules assistant. Answer the user's question using "
+        "ONLY the rule text provided below. Do not use your general knowledge of "
+        "board games, and do not infer or extrapolate beyond what is explicitly "
+        "stated in the provided text. If the answer is not contained in the "
+        "provided rules, say so clearly — do not guess. "
+        "Always identify which game your answer comes from."
+    )
+
+    user_message = f"Rules context:\n\n{context}\n\nQuestion: {query}"
+
+    response = _client.chat.completions.create(
+        model=LLM_MODEL,
+        messages=[
+            {"role": "system", "content": system_message},
+            {"role": "user", "content": user_message},
+        ],
+    )
+
+    return response.choices[0].message.content
